@@ -40,14 +40,17 @@
     position:absolute;
     font-size: 4em; 
     color:white;
-    margin-top:1%;
+    margin-top:5%;
+    margin-left:12%;
+
 }
 #wrapper111{
     position:absolute;
-    margin-top:5%;
     color:#3624ea;
+    font-size: 4em;
     font-weight:bold;
-    margin-left:10%;
+    margin-top:13%;
+    margin-left:11%;
 
 }
 #wrapper12{
