@@ -1,75 +1,47 @@
-var app = new function() {
-    this.el = document.getElementById('countries');
-    this.countries = ['France', 'Germany', 'England', 'Spain', 'Belgium', 'Italy', 'Portugal', 'Irland', 'Luxembourg'];
-    this.Count = function(data) {
-      var el   = document.getElementById('counter');
-      var name = 'country';
-      if (data) {
-        if (data > 1) {
-          name = 'countries';
-        }
-        el.innerHTML = data + ' ' + name ;
-      } else {
-        el.innerHTML = 'No ' + name;
-      }
-    };
-    
-    this.FetchAll = function() {
-      var data = '';
-      if (this.countries.length > 0) {
-        for (i = 0; i < this.countries.length; i++) {
-          data += '<tr>';
-          data += '<td>' + this.countries[i] + '</td>';
-          data += '<td><button onclick="app.Edit(' + i + ')">Edit</button></td>';
-          data += '<td><button onclick="app.Delete(' + i + ')">Delete</button></td>';
-          data += '</tr>';
-        }
-      }
-      this.Count(this.countries.length);
-      return this.el.innerHTML = data;
-    };
-    this.Add = function () {
-      el = document.getElementById('add-name');
-      // Get the value
-      var country = el.value;
-      if (country) {
-        // Add the new value
-        this.countries.push(country.trim());
-        // Reset input value
-        el.value = '';
-        // Dislay the new list
-        this.FetchAll();
-      }
-    };
-    this.Edit = function (item) {
-      var el = document.getElementById('edit-name');
-      // Display value in the field
-      el.value = this.countries[item];
-      // Display fields
-      document.getElementById('spoiler').style.display = 'block';
-      self = this;
-      document.getElementById('saveEdit').onsubmit = function() {
-        // Get value
-        var country = el.value;
-        if (country) {
-          // Edit value
-          self.countries.splice(item, 1, country.trim());
-          // Display the new list
-          self.FetchAll();
-          // Hide fields
-          CloseInput();
-        }
-      }
-    };
-    this.Delete = function (item) {
-      // Delete the current row
-      this.countries.splice(item, 1);
-      // Display the new list
-      this.FetchAll();
-    };
-    
+var data = document.getElementById("data");
+var taskList = document.getElementById("taskList");
+var set= new Set();
+var counter = 0;
+ 
+function addtask(){
+var inputdata = document.getElementById('data').value;
+var x=inputdata.toLowerCase();
+   var html =  '<div class="row" id="data'+counter+'" style="margin-bottom:15px;">'+
+    '<div class="col-md-6 col-sm-12 col-xs-12">'+
+      '<input type="text" class="form-control" value="'+inputdata+'" disabled>'+
+    '</div>'+
+    '<div class="col-md-2 col-sm-4 col-xs-4">'+
+      '<button type="button" class="btn btn-success" onclick="edit(this.id)" id="edit'+counter+'">Edit</button>'+
+    '</div>'+
+
+    '<div class="col-md-2 col-sm-4 col-xs-4">'+
+      '<button type="button" class="btn btn-success" onclick="update(this.id)" id="update'+counter+'">Update</button>'+
+    '</div>'+
+    '<div class="col-md-2 col-sm-4 col-xs-4">'+
+      '<button type="button" class="btn btn-danger" onclick="remove(this.id)" id="delete'+counter+'">Delete</button>'+
+    '</div>'+
+  '</div>';
+  if ( x!=undefined && (set.has(x)!=true) ){
+  document.getElementById('taskList').insertAdjacentHTML('beforeend', html);
+  counter++;
+  set.add(x);
   }
-  app.FetchAll();
-  function CloseInput() {
-    document.getElementById('spoiler').style.display = 'none';
   }
+
+function edit(editId){
+  var parent =  document.getElementById(editId).parentNode.parentNode;
+  var child = parent.firstChild.firstChild;
+  child.removeAttribute('disabled');
+  }
+
+function update(updateId){
+  var parent =   document.getElementById(updateId).parentNode.parentNode;
+  var child = parent.firstChild.firstChild;
+  child.setAttribute("disabled",'disabled');
+  }
+
+function remove(deleteId){
+  var parent =   document.getElementById(deleteId).parentNode.parentNode;
+  parent.remove();
+  
+ }
