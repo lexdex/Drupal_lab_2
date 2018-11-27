@@ -45,7 +45,7 @@
             echo "</table>";
             unset($data);
         } else{
-            echo "<p style='color:blue;'>Database are empty :C</p>";
+            echo "<p style='color:blue;'>Database currently is empty :C</p>";
         }
     } else{
         echo " Error" . $mysqli->error;
