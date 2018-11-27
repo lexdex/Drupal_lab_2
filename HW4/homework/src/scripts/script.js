@@ -10,7 +10,6 @@ $(function($) {
             data: "data",
             dataType: 'jsonp',
             success: (data, status, jqXHR) => {
-            console.log(data);
             $('#content').html();
             for(let i = 0;i < data[1].length; i++) {
                     $('#content').prepend("<div><div class='content-items'><a href="+data[3][i]+"><h2>" + data[1][i]+ "</h2>" + "<p>" + data[2][i] + "</p></a></div></div>"+"<br>");
