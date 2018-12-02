@@ -26,7 +26,7 @@ class Zoo {
         for ($i = 0; $i < count($this->zooAnimals); $i++) {
             echo '<p>There are ' .$this->typesOfAnimals[$i] .'s in :' .count($this->zooAnimals[$i]) .'</p>';
             foreach ($this->zooAnimals[$i] as $key) {
-                echo $key->getName() . '<br>';
+                 echo $key->getName() ." with hash ".spl_object_hash($this); '<br>';
             }
             echo '<br>';
         }
