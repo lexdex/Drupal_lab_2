@@ -1,0 +1,1 @@
+Drupal custom subtheme for bartik
