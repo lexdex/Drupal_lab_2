@@ -14,7 +14,7 @@ function sumofelements(){
         return $sum;
     } else echo 'Please enter a number';
 }
-echo '<h1>Sum is eqaul = ' . sumofelements() . '</h1>';
+echo '<h1>Sum is equal = ' . sumofelements() . '</h1>';
 echo '<br>';
 include 'footer.tpl.php';
 
